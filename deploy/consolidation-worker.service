@@ -1,0 +1,19 @@
+[Unit]
+Description=Binance 1D consolidation scanner and NTFY notifier
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=consolidation
+Group=consolidation
+WorkingDirectory=/opt/consolidation-worker
+EnvironmentFile=/etc/consolidation-worker.env
+ExecStart=/usr/bin/node /opt/consolidation-worker/node_modules/tsx/dist/cli.mjs /opt/consolidation-worker/scripts/consolidation-ntfy-monitor.ts --once
+TimeoutStartSec=10min
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

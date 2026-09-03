@@ -1,0 +1,24 @@
+{
+  "name": "consolidation-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "scan": "tsx scripts/consolidation-ntfy-monitor.ts --once",
+    "scan:dry-run": "tsx scripts/consolidation-ntfy-monitor.ts --once --dry-run",
+    "test": "tsx --test scripts/test-consolidation-notifications.ts scripts/test-consolidation-zone-relaxation.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "dotenv": "17.2.3",
+    "tsx": "4.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.0",
+    "typescript": "5.8.3"
+  }
+}
